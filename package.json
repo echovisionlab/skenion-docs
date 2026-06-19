@@ -1,0 +1,9 @@
+{
+  "name": "skenion-docs",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.12.4",
+  "scripts": {
+    "ci": "node scripts/check-docs.mjs"
+  }
+}
