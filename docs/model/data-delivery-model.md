@@ -60,6 +60,8 @@ Every new feature should answer:
 
 - Is the payload retained, event-like, sampled, streamed, or resource-owned?
 - Which rate and clock own the work?
+- Is the clock a runtime substrate clock, a graph-visible musical clock, or an
+  external source projection?
 - Can data be copied safely, or should it be shared by handle?
 - What happens under pressure: drop, queue, block, retain latest, or reject?
 - Is conversion semantic, representational, or a domain crossing?
@@ -70,6 +72,7 @@ Every new feature should answer:
 - [Control And Message](control-and-message.md)
 - [Semantic Values](semantic-values.md)
 - [Audio Signal](audio-signal.md)
+- [Clock And Transport](clock-and-transport.md)
 - [Video Stream](video-stream.md)
 - [Render And GPU](render-and-gpu.md)
 - [Domain Crossing](domain-crossing.md)

@@ -20,6 +20,12 @@ The Rust runtime should compile an audio subgraph into a stable DSP plan:
 Actual device IO and backend selection are deferred. This document only fixes
 the contract shape needed to implement a high-performance Rust DSP engine later.
 
+Audio device IO is owned by `audio.output`. Its sample clock determines
+sample-rate, block-size, and sample-frame progression for the connected DSP
+subgraph. Musical `clock.*` objects may provide tempo, phase, reset, or
+transport information, but they do not drive the device callback itself. See
+[Clock And Transport](clock-and-transport.md).
+
 ## First Signal Operator Baseline
 
 The first audio operator baseline is:
@@ -67,4 +73,3 @@ The first crossing baseline is:
 Control-to-signal crossing is block-aligned unless a later ramp/smoothing node
 defines finer timing. Signal-to-control crossing must be explicit so the patch
 can show latency and sampling policy.
-
