@@ -110,13 +110,13 @@ TIME 01:26:47:20.62 from MTC
 
 ## Audio Sample Clock
 
-`audio.output` owns the audio device/sample clock in v0:
+`audio.output` owns an audio output stream sample clock:
 
-- one active output device
-- one sample-rate domain
+- one endpoint stream
+- one sample-rate domain for the connected output partition
 - one block size
 - one sample format boundary
-- one DSP executor
+- one DSP executor for that stream domain
 
 Connected audio DSP subgraphs inherit this sample clock implicitly:
 
@@ -133,6 +133,10 @@ phase += frequency / sampleRate
 
 Musical clock inputs may modulate or synchronize audio nodes, but they do not
 drive the device callback itself.
+
+Multiple endpoints require explicit clock-domain planning. The same numeric
+sample rate does not prove that an input and output stream share a clock
+domain. See [Audio Clock Domains](audio-clock-domains.md).
 
 ## Render Frame Clock
 

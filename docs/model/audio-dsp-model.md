@@ -17,13 +17,14 @@ The Rust runtime should compile an audio subgraph into a stable DSP plan:
 - bounded control update queue
 - no blocking file, network, or UI work in the audio callback
 
-Actual device IO and backend selection are deferred. This document only fixes
-the contract shape needed to implement a high-performance Rust DSP engine later.
+Audio device IO is owned by endpoint objects such as `audio.output` and
+`audio.input`. `audio.output` owns an output stream sample clock; connected DSP
+subgraphs inherit that clock implicitly. `audio.input` owns an input stream
+sample clock; direct input-to-output routing is valid only when the runtime can
+prove a shared clock domain. See [Audio Clock Domains](audio-clock-domains.md).
 
-Audio device IO is owned by `audio.output`. Its sample clock determines
-sample-rate, block-size, and sample-frame progression for the connected DSP
-subgraph. Musical `clock.*` objects may provide tempo, phase, reset, or
-transport information, but they do not drive the device callback itself. See
+Musical `clock.*` objects may provide tempo, phase, reset, or transport
+information, but they do not drive the device callback itself. See
 [Clock And Transport](clock-and-transport.md).
 
 ## First Signal Operator Baseline
