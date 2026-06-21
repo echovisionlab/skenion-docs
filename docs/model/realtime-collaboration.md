@@ -24,9 +24,10 @@ is stale.
 
 ## Participants And Presence
 
-Runtime may assign participant ids and connection ids so it can describe
-presence, operation causality, idempotency, and actor-scoped undo metadata.
-These ids are collaboration identifiers, not authentication identities.
+Runtime assigns participant ids and connection ids for collaborative sessions
+so it can describe presence, operation causality, idempotency, and
+actor-scoped undo metadata. These ids are collaboration identifiers, not
+authentication identities.
 
 In remote deployments, security identity should come from the authenticated
 connection or deployment policy. Studio should not ask the user to type an
