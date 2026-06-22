@@ -22,11 +22,11 @@ const staleManualTerminologyRules = [
     message: "remove stale graph v0.2 terminology from the public Manual"
   },
   {
-    pattern: /\bV02\b/,
+    matches: hasStaleV02ContractIdentifier,
     message: "use current V01 contract names in the public Manual"
   },
   {
-    pattern: /\bimport\/migration\b/i,
+    matches: hasImportMigrationCompatibilityWording,
     message: "describe strict unsupported-version rejection instead of import/migration compatibility"
   }
 ];
@@ -57,7 +57,7 @@ for (const file of markdownFiles) {
   }
   if (isPublicManual(relative)) {
     for (const rule of staleManualTerminologyRules) {
-      if (rule.pattern.test(text)) {
+      if (matchesRule(rule, text)) {
         errors.push(`${relative}: ${rule.message}`);
       }
     }
@@ -89,6 +89,22 @@ for (const [input, expected] of routeCases) {
   const actual = manualRouteForVersion(input);
   if (actual !== expected) {
     errors.push(`manual version ${JSON.stringify(input)} routed to ${actual}, expected ${expected}`);
+  }
+}
+
+const staleTerminologyCases = [
+  ["V02", hasStaleV02ContractIdentifier],
+  ["ProjectDocumentV02", hasStaleV02ContractIdentifier],
+  ["GraphFragmentV02", hasStaleV02ContractIdentifier],
+  ["PatchContractV02", hasStaleV02ContractIdentifier],
+  ["import/migration", hasImportMigrationCompatibilityWording],
+  ["legacy import path", hasImportMigrationCompatibilityWording],
+  ["migration path", hasImportMigrationCompatibilityWording],
+  ["import migration compatibility", hasImportMigrationCompatibilityWording]
+];
+for (const [text, predicate] of staleTerminologyCases) {
+  if (!predicate(text)) {
+    errors.push(`stale terminology guard missed ${JSON.stringify(text)}`);
   }
 }
 
@@ -263,6 +279,21 @@ function requiresStatus(relative) {
 
 function isPublicManual(relative) {
   return requiresStatus(relative);
+}
+
+function matchesRule(rule, text) {
+  if (rule.matches) {
+    return rule.matches(text);
+  }
+  return rule.pattern.test(text);
+}
+
+function hasStaleV02ContractIdentifier(text) {
+  return /\b(?:[A-Za-z_][A-Za-z0-9_]*V02|V02)\b/.test(text);
+}
+
+function hasImportMigrationCompatibilityWording(text) {
+  return /\b(?:import\/migration|legacy import paths?|migration paths?|import migration compatibility)\b/i.test(text);
 }
 
 function readStatus(text) {
