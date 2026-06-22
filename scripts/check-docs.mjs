@@ -8,6 +8,28 @@ const statusValues = new Set(["draft", "active", "deferred"]);
 const markdownFiles = listMarkdown(root).sort();
 const errors = [];
 const { manualRouteForVersion, normalizeManualVersion } = manualVersioning;
+const staleManualTerminologyRules = [
+  {
+    pattern: /\bgraph-v02-cutover\b/i,
+    message: "link to the current graph 0.1 contract page instead of the old cutover page"
+  },
+  {
+    pattern: /\bGraph v0\.2 Cutover\b/i,
+    message: "use the Graph 0.1 Current Contract title"
+  },
+  {
+    pattern: /\bv0\.2\b/i,
+    message: "remove stale graph v0.2 terminology from the public Manual"
+  },
+  {
+    pattern: /\bV02\b/,
+    message: "use current V01 contract names in the public Manual"
+  },
+  {
+    pattern: /\bimport\/migration\b/i,
+    message: "describe strict unsupported-version rejection instead of import/migration compatibility"
+  }
+];
 
 for (const file of markdownFiles) {
   const relative = path.relative(root, file);
@@ -32,6 +54,13 @@ for (const file of markdownFiles) {
   }
   for (const manualPath of patchSpecificManualPaths(text)) {
     errors.push(`${relative}: patch-specific Manual path ${manualPath}; use the major/minor path instead`);
+  }
+  if (isPublicManual(relative)) {
+    for (const rule of staleManualTerminologyRules) {
+      if (rule.pattern.test(text)) {
+        errors.push(`${relative}: ${rule.message}`);
+      }
+    }
   }
 }
 
@@ -65,24 +94,25 @@ for (const [input, expected] of routeCases) {
 
 const requiredManualCoverage = new Map([
   [
-    "docs/model/graph-v02-cutover.md",
+    "docs/model/graph-01-current.md",
     [
-      "ProjectDocumentV02",
-      "GraphDocumentV02",
+      "ProjectDocumentV01",
+      "GraphDocumentV01",
       "patch libraries",
-      "PatchDefinitionV02",
-      "GraphFragmentV02",
+      "PatchDefinitionV01",
+      "GraphFragmentV01",
       "Runtime graph targets",
-      "legacy import/migration only"
+      "versions are rejected with structured diagnostics",
+      "0.1/V01"
     ]
   ],
   [
     "docs/model/subpatches.md",
     [
-      "PatchDefinitionV02",
+      "PatchDefinitionV01",
       "core.inlet",
       "core.outlet",
-      "PatchContractV02",
+      "PatchContractV01",
       "p <patch-id>",
       "description",
       "flat expansion"
@@ -91,17 +121,17 @@ const requiredManualCoverage = new Map([
   [
     "docs/model/live-help.md",
     [
-      "PatchDefinitionV02",
+      "PatchDefinitionV01",
       "read-only",
       "help-working-copy",
-      "GraphFragmentV02",
+      "GraphFragmentV01",
       "Promotion"
     ]
   ],
   [
     "docs/model/graph-fragments.md",
     [
-      "GraphFragmentV02",
+      "GraphFragmentV01",
       "outsideEndpointPolicy",
       "baseRevision",
       "idConflictPolicy",
@@ -109,24 +139,25 @@ const requiredManualCoverage = new Map([
     ]
   ],
   [
-    "versioned_docs/version-0.33/model/graph-v02-cutover.md",
+    "versioned_docs/version-0.33/model/graph-01-current.md",
     [
-      "ProjectDocumentV02",
-      "GraphDocumentV02",
+      "ProjectDocumentV01",
+      "GraphDocumentV01",
       "patch libraries",
-      "PatchDefinitionV02",
-      "GraphFragmentV02",
+      "PatchDefinitionV01",
+      "GraphFragmentV01",
       "Runtime graph targets",
-      "legacy import/migration only"
+      "versions are rejected with structured diagnostics",
+      "0.1/V01"
     ]
   ],
   [
     "versioned_docs/version-0.33/model/subpatches.md",
     [
-      "PatchDefinitionV02",
+      "PatchDefinitionV01",
       "core.inlet",
       "core.outlet",
-      "PatchContractV02",
+      "PatchContractV01",
       "p <patch-id>",
       "description",
       "flat expansion"
@@ -135,17 +166,17 @@ const requiredManualCoverage = new Map([
   [
     "versioned_docs/version-0.33/model/live-help.md",
     [
-      "PatchDefinitionV02",
+      "PatchDefinitionV01",
       "read-only",
       "help-working-copy",
-      "GraphFragmentV02",
+      "GraphFragmentV01",
       "Promotion"
     ]
   ],
   [
     "versioned_docs/version-0.33/model/graph-fragments.md",
     [
-      "GraphFragmentV02",
+      "GraphFragmentV01",
       "outsideEndpointPolicy",
       "baseRevision",
       "idConflictPolicy",
@@ -228,6 +259,10 @@ function requiresStatus(relative) {
     relative.startsWith(`docs${path.sep}`)
     || relative.startsWith(`versioned_docs${path.sep}`)
   );
+}
+
+function isPublicManual(relative) {
+  return requiresStatus(relative);
 }
 
 function readStatus(text) {
