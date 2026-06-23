@@ -1,13 +1,13 @@
 const { manualDocusaurusVersions } = require("./src/manual-versioning.cjs");
 
 const config = {
-  title: "Skenion Manual",
-  tagline: "Authoring, graph model, and runtime behavior for Skenion.",
+  title: "skenion Manual",
+  tagline: "Authoring, graph model, and runtime behavior for skenion.",
 
-  url: "https://echovisionlab.github.io",
+  url: "https://skenion.github.io",
   baseUrl: process.env.SKENION_MANUAL_BASE_URL ?? "/skenion-docs/",
 
-  organizationName: "echovisionlab",
+  organizationName: "skenion",
   projectName: "skenion-docs",
   trailingSlash: true,
 
@@ -33,7 +33,7 @@ const config = {
           lastVersion: "current",
           versions: manualDocusaurusVersions,
           editUrl: ({ versionDocsDirPath, docPath }) => (
-            `https://github.com/echovisionlab/skenion-docs/tree/main/${versionDocsDirPath}/${docPath}`
+            `https://github.com/skenion/skenion-docs/tree/main/${versionDocsDirPath}/${docPath}`
           )
         },
         blog: false,
@@ -46,7 +46,7 @@ const config = {
 
   themeConfig: {
     navbar: {
-      title: "Skenion Manual",
+      title: "skenion Manual",
       items: [
         {
           type: "docSidebar",
@@ -60,7 +60,7 @@ const config = {
           dropdownActiveClassDisabled: true
         },
         {
-          href: "https://github.com/echovisionlab/skenion-docs",
+          href: "https://github.com/skenion/skenion-docs",
           label: "GitHub",
           position: "right"
         }
@@ -90,17 +90,17 @@ const config = {
           title: "Project",
           items: [
             {
-              label: "Skenion Docs",
-              href: "https://github.com/echovisionlab/skenion-docs"
+              label: "skenion Docs",
+              href: "https://github.com/skenion/skenion-docs"
             },
             {
-              label: "Skenion Examples",
-              href: "https://github.com/echovisionlab/skenion-examples"
+              label: "skenion Examples",
+              href: "https://github.com/skenion/skenion-examples"
             }
           ]
         }
       ],
-      copyright: `Copyright ${new Date().getFullYear()} EchoVisionLab.`
+      copyright: `Copyright ${new Date().getFullYear()} skenion contributors.`
     },
     prism: {
       additionalLanguages: ["json", "toml", "rust"]

@@ -5,7 +5,7 @@ status: draft
 # Object Text Parser
 
 Pd-style object text is a compact authoring surface. It is not the runtime
-implementation. Skenion parses object text into explicit node kind, params, and
+implementation. skenion parses object text into explicit node kind, params, and
 instance ports before validation and execution.
 
 ## Parse Output
@@ -55,6 +55,6 @@ must not be collapsed.
 
 Unsupported vanilla Pd objects should produce a valid parse result with
 `ok: false` diagnostics rather than silently creating an approximate node.
-Unsupported Skenion extension candidates should be marked as extension
+Unsupported skenion extension candidates should be marked as extension
 candidates, not vanilla baseline.
 

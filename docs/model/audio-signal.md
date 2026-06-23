@@ -39,5 +39,5 @@ onset detection. These nodes decide block size, update rate, and event policy.
 
 ## Tilde Objects
 
-Pd-style `~` object names indicate audio/signal-rate behavior, but Skenion must
+Pd-style `~` object names indicate audio/signal-rate behavior, but skenion must
 still represent the underlying rate, flow, and clock explicitly.

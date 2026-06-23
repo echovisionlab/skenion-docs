@@ -5,7 +5,7 @@ status: draft
 # Audio Clock Domains
 
 Audio graphs can have more than one endpoint and more than one sample-clock
-domain. Skenion must not turn the first single-output backend into a permanent
+domain. skenion must not turn the first single-output backend into a permanent
 single-device model.
 
 ## Core Distinctions

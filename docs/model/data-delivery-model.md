@@ -4,7 +4,7 @@ status: draft
 
 # Data Delivery Model
 
-This document is the review entry point for deciding how a Skenion feature
+This document is the review entry point for deciding how a skenion feature
 moves data. It comes before object syntax, UI widgets, runtime implementation,
 or render nodes.
 
@@ -13,7 +13,7 @@ the model those contracts are expected to serve.
 
 ## Delivery Axes
 
-Skenion describes data with several independent axes.
+skenion describes data with several independent axes.
 
 | Axis | Purpose |
 | --- | --- |

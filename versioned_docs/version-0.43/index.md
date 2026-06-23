@@ -4,9 +4,9 @@ slug: /
 sidebar_position: 1
 ---
 
-# Skenion Manual 0.43
+# skenion Manual 0.43
 
-The 0.43 Manual track covers the Skenion graph contract, release train
+The 0.43 Manual track covers the skenion graph contract, release train
 compatibility, install artifacts, and authoring behavior for the 0.43 product
 minor.
 

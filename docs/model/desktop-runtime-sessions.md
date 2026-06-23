@@ -5,7 +5,7 @@ sidebar_position: 18
 
 # Desktop Runtime Sessions
 
-Skenion Studio desktop uses Tauri as the shell around the web Studio client.
+skenion Studio desktop uses Tauri as the shell around the web Studio client.
 Tauri owns windows, webviews, OS permissions, local child-process lifecycle,
 and desktop clipboard bridges. Runtime sessions remain authoritative for graph
 documents, patch libraries, diagnostics, execution state, history, and runtime

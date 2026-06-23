@@ -4,7 +4,7 @@ status: draft
 
 # Clock And Transport Model
 
-Skenion does not force one user-facing global master transport. It still has
+skenion does not force one user-facing global master transport. It still has
 runtime substrate clocks for execution domains. These two ideas must stay
 separate.
 
@@ -23,7 +23,7 @@ musical timing and synchronization state through the graph.
 
 ## No Forced Master Transport
 
-Skenion patches may contain multiple independent clock objects:
+skenion patches may contain multiple independent clock objects:
 
 - `clock.local`
 - `clock.follow`

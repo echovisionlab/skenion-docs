@@ -4,9 +4,9 @@ slug: /
 sidebar_position: 1
 ---
 
-# Skenion Manual
+# skenion Manual
 
-The Skenion Manual explains how patches, objects, runtime behavior, and authoring
+The skenion Manual explains how patches, objects, runtime behavior, and authoring
 tools fit together. It is the product-facing companion to the machine-readable
 contracts in `skenion-contracts`.
 
