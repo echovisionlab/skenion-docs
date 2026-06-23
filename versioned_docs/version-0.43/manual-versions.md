@@ -18,7 +18,7 @@ do not promote the latest published Manual by themselves. Latest Manual and
 GitHub Pages promotion happens only from a release train promotion that carries
 or references the train manifest.
 
-For the `0.43.0` train, the manifest records `trainId: "0.43"`, the Manual
+For the `0.43.0` train, the manifest records `train-id: "0.43"`, the Manual
 version `0.43.0`, and this deployed Manual path `/manual/0.43/`. The docs
 deployment verifies that the repository contains the matching `0.43` Manual
 track before publishing the Pages artifact. Patch trains on the same product
