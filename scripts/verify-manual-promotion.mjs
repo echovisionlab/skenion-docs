@@ -64,20 +64,20 @@ if (errors.length) {
 }
 
 const promotion = {
-  trainVersion,
-  trainId,
-  manualVersion: trainId,
-  manualPath: `/manual/${trainId}/`,
-  latestPath: "/manual/",
-  promotedBy: "release-train",
-  generatedAt: new Date().toISOString()
+  "train-version": trainVersion,
+  "train-id": trainId,
+  "manual-version": trainId,
+  "manual-path": `/manual/${trainId}/`,
+  "latest-path": "/manual/",
+  "promoted-by": "release-train",
+  "generated-at": new Date().toISOString()
 };
 
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(`${out}.tmp`, `${JSON.stringify(promotion, null, 2)}\n`);
 fs.renameSync(`${out}.tmp`, out);
 setOutput("manual-version", trainId);
-setOutput("manual-path", promotion.manualPath);
+setOutput("manual-path", promotion["manual-path"]);
 setOutput("promotion-metadata", out);
 
 console.log(`Verified Manual promotion metadata for train ${trainId} (${trainVersion}).`);
