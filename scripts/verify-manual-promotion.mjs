@@ -150,10 +150,10 @@ function validateCompatibilityMatrix(manifest) {
   requireEquals(manifest["schema-version"], "0.1.0", "manifest.schema-version");
   requireEquals(manifest["contracts-line"], trainId, "manifest.contracts-line");
   requireEquals(manifest["contracts-range"], canonicalRangeForLine(trainId), "manifest.contracts-range");
-  requireEquals(manifest.promoted, true, "manifest.promoted");
 
   validateContractsPackages(manifest.components?.contracts);
   validateSdkRange(manifest.components?.sdk);
+  validateRequiredReleaseGates(manifest["release-gates"]);
 
   const docsManual = manifest.components?.docs?.manual;
   if (!docsManual || typeof docsManual !== "object") {
@@ -163,8 +163,7 @@ function validateCompatibilityMatrix(manifest) {
   requireEquals(docsManual?.path, expectedManualPath, "components.docs.manual.path");
   rejectPatchSpecificManualPath(docsManual?.path, "components.docs.manual.path");
   requireEquals(docsManual?.["pages-url"], expectedPagesUrl, "components.docs.manual.pages-url");
-  requireDocsManualPromoted(docsManual);
-  requireDocsManualPagesDeployed(docsManual);
+  requireDocsManualSourceVerified(docsManual);
 
   const docsGate = manifest["release-gates"]?.["docs-pages-deployment"];
   if (!docsGate || typeof docsGate !== "object") {
@@ -173,12 +172,21 @@ function validateCompatibilityMatrix(manifest) {
   }
   requireEquals(docsGate.id, "docs-pages-deployment", "release-gates.docs-pages-deployment.id");
   requireEquals(docsGate.required, true, "release-gates.docs-pages-deployment.required");
-  requirePassedStatus(docsGate.status, "release-gates.docs-pages-deployment.status");
   requireManualVersionOnLine(docsGate["manual-version"], "release-gates.docs-pages-deployment.manual-version");
   requireEquals(docsGate["manual-path"], expectedManualPath, "release-gates.docs-pages-deployment.manual-path");
   rejectPatchSpecificManualPath(docsGate["manual-path"], "release-gates.docs-pages-deployment.manual-path");
   requireEquals(docsGate["pages-url"], expectedPagesUrl, "release-gates.docs-pages-deployment.pages-url");
-  requireNonEmptyString(docsGate["evidence-url"], "release-gates.docs-pages-deployment.evidence-url");
+
+  if (isPromotedMatrix(manifest)) {
+    requireDocsManualPromoted(docsManual);
+    requireDocsManualPagesDeployed(docsManual);
+    requirePassedStatus(docsGate.status, "release-gates.docs-pages-deployment.status");
+    requireNonEmptyString(docsGate["evidence-url"], "release-gates.docs-pages-deployment.evidence-url");
+    return;
+  }
+
+  requirePromotionCandidate(manifest);
+  requirePendingDocsGate(docsGate);
 }
 
 function rejectLegacyManifestKeys(manifest) {
@@ -228,6 +236,19 @@ function validateSdkRange(sdk) {
     sdk.npm?.["contracts-range"]
   );
   requireEquals(range, canonicalRangeForLine(trainId), "components.sdk.contracts-range");
+}
+
+function validateRequiredReleaseGates(releaseGates) {
+  if (!releaseGates || typeof releaseGates !== "object") {
+    errors.push("release-gates is required for Manual Pages promotion");
+    return;
+  }
+  for (const [id, gate] of Object.entries(releaseGates)) {
+    if (id === "docs-pages-deployment" || !gate || typeof gate !== "object" || gate.required !== true) {
+      continue;
+    }
+    requirePassedStatus(gate.status, `release-gates.${id}.status`);
+  }
 }
 
 function requirePackageVersionOnLine(packageRef, label) {
@@ -301,6 +322,38 @@ function requirePassedStatus(value, label) {
   }
 }
 
+function requirePromotionCandidate(manifest) {
+  if (manifest.promoted === true || manifest["promoted-at"] !== undefined) {
+    errors.push("manifest must not be marked promoted before Manual Pages deployment evidence is produced");
+  }
+  if (!hasPromotionCandidateState(manifest)) {
+    errors.push(
+      "manifest must be an explicit promotion-candidate matrix before Manual Pages can emit deployment evidence"
+    );
+  }
+}
+
+function requirePendingDocsGate(docsGate) {
+  const status = String(docsGate?.status ?? "").toLowerCase();
+  const pendingStatuses = new Set(["pending", "required", "waiting", "planned", "ready"]);
+  if (!pendingStatuses.has(status)) {
+    errors.push(
+      `release-gates.docs-pages-deployment.status must be pending before this Pages deployment, got ${JSON.stringify(docsGate?.status)}`
+    );
+  }
+}
+
+function requireDocsManualSourceVerified(manual) {
+  const sourceStatus = firstNonEmptyString(
+    manual?.source?.ci?.status,
+    manual?.source?.status,
+    manual?.["source-status"]
+  );
+  if (!statusIsPassed(sourceStatus)) {
+    errors.push("components.docs.manual.source must include passed Docs CI/source evidence before Pages promotion");
+  }
+}
+
 function requireDocsManualPromoted(manual) {
   const promoted =
     manual?.promoted === true
@@ -332,7 +385,27 @@ function requireNonEmptyString(value, label) {
 }
 
 function statusIsPassed(value) {
-  return String(value ?? "").toLowerCase() === "passed";
+  return new Set(["passed", "success", "succeeded", "verified", "deployed", "published", "promoted"]).has(
+    String(value ?? "").toLowerCase()
+  );
+}
+
+function isPromotedMatrix(manifest) {
+  return (
+    manifest.promoted === true
+    || manifest["promoted-at"] !== undefined
+    || String(manifest.status ?? "").toLowerCase() === "promoted"
+    || String(manifest["promotion-state"] ?? "").toLowerCase() === "promoted"
+    || statusIsPassed(manifest.promotion?.status)
+  );
+}
+
+function hasPromotionCandidateState(manifest) {
+  return [
+    manifest.status,
+    manifest["promotion-state"],
+    manifest.promotion?.status
+  ].some((value) => String(value ?? "").toLowerCase() === "promotion-candidate");
 }
 
 function rejectPatchSpecificManualPath(value, label) {
