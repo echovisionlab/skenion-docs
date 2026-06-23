@@ -45,7 +45,7 @@ jobs:
   validate-train:
     name: Validate train manifest
     needs: resolve-promotion
-    uses: echovisionlab/skenion-ci/.github/workflows/validate-train-manifest.yml@v1
+    uses: skenion/skenion-ci/.github/workflows/validate-train-manifest.yml@v1
     with:
       manifest: ${{ needs.resolve-promotion.outputs.manifest }}
       manifest-ref: ${{ needs.resolve-promotion.outputs['manifest-ref'] }}

@@ -4,7 +4,7 @@ status: draft
 
 # Runtime Extension Packages
 
-Skenion loads extension contract surfaces from package directories. A package
+skenion loads extension contract surfaces from package directories. A package
 directory owns a `skenion.extension.json` manifest at its root. First-party core
 packages and third-party packages use the same manifest shape; the difference is
 publisher and trust policy, not a separate interface.

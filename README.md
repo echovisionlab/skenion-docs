@@ -1,8 +1,8 @@
-# Skenion Manual
+# skenion Manual
 
-Human-readable product Manual and design documents for Skenion.
+Human-readable product Manual and design documents for skenion.
 
-This repository explains how Skenion data moves through the system before it
+This repository explains how skenion data moves through the system before it
 becomes node UI, runtime code, or renderer behavior. It is intentionally
 separate from machine-readable contracts.
 
@@ -22,7 +22,7 @@ criteria. Machine contracts remain in `skenion-contracts`.
 
 ## Start Here
 
-- [Skenion Manual](docs/index.md)
+- [skenion Manual](docs/index.md)
 - [Manual Versions](docs/manual-versions.md)
 - [Data Delivery Model](docs/model/data-delivery-model.md)
 - [Control And Message](docs/model/control-and-message.md)
@@ -34,19 +34,18 @@ criteria. Machine contracts remain in `skenion-contracts`.
 - [Render And GPU](docs/model/render-and-gpu.md)
 - [Domain Crossing](docs/model/domain-crossing.md)
 - [Object Layer](docs/model/object-layer.md)
-- [Pd Baseline Matrix](docs/model/pd-baseline-matrix.md)
 - [Object Text Parser](docs/model/object-text-parser.md)
 - [Control Operators](docs/model/control-operators.md)
 - [Audio DSP Model](docs/model/audio-dsp-model.md)
 - [Expression Layer](docs/model/expression-layer.md)
 - [Subpatches](docs/model/subpatches.md)
 - [Live Help](docs/model/live-help.md)
-- [Pure Data Notes](docs/references/pure-data-notes.md)
 
 ## Manual Site
 
 This repository builds a Docusaurus Manual for GitHub Pages:
 
+- Pages URL: `https://skenion.github.io/skenion-docs/`
 - current source publishes as `/manual/`
 - frozen minor Manual docs publish as paths such as `/manual/0.33`
 - product patch versions normalize to minor Manual versions, so `0.22.5`
@@ -94,5 +93,5 @@ Manual version normalization, and the Docusaurus build.
 This repository is licensed under the Apache License, Version 2.0.
 
 Redistributions must preserve copyright, license, and NOTICE information as
-required by Apache-2.0. If Skenion helps your artwork, research, publication,
-installation, or tool, please credit Skenion and EchoVisionLab.
+required by Apache-2.0. If skenion helps your artwork, research, publication,
+installation, or tool, please credit skenion.

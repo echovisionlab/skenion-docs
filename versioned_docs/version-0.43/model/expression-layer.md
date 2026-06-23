@@ -31,7 +31,7 @@ and runtime backend are deferred. This document only establishes that expr-like
 objects sit on top of the delivery model and must respect control versus audio
 domain boundaries.
 
-## Relationship To Pd Baseline
+## Expression Object Scope
 
 `expr`, `expr~`, and `fexpr~` are not the base transport model. They are
 expression objects over the control and audio models. They should be specified
@@ -44,5 +44,5 @@ Initial review targets:
 - `$x1[n]` references indexed signal input samples.
 - `$y[n]` references output/history samples in feedback expressions.
 
-The first DSP baseline does not implement expression evaluation. It only leaves
+The first DSP contract does not implement expression evaluation. It only leaves
 room for expression objects to consume the same port, rate, and clock model.

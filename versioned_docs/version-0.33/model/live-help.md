@@ -33,7 +33,7 @@ graph itself. Port and object help text comes from each port or node
 ## Opening Help
 
 Opening help creates a graph editor or graph view over a help patch. When the
-source patch belongs to Skenion or a package, Studio should protect the source by
+source patch belongs to skenion or a package, Studio should protect the source by
 opening a volatile `help-working-copy`. The working copy may be editable for
 experimentation, but closing it does not mutate the source package or Manual
 fixture.

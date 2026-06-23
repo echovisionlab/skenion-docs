@@ -7,7 +7,7 @@ sidebar_position: 2
 
 The 0.33 Manual track is published at `/manual/0.33/`.
 
-Skenion product patch releases normalize to their minor Manual version before
+skenion product patch releases normalize to their minor Manual version before
 Manual lookup. For example, `0.33.5` normalizes to `0.33`, then resolves through
 this 0.33 Manual track. Patch-specific Manual paths are not valid.
 
@@ -38,7 +38,7 @@ GitHub Pages deployment for this Manual path has succeeded.
 
 ## Strict v0 Version Policy
 
-Skenion 0.33 treats version fields as exact current-version discriminators, not
+skenion 0.33 treats version fields as exact current-version discriminators, not
 as compatibility ranges. A graph, project, node, operation, extension package,
 Runtime HTTP request, manifest, protocol payload, or Manual metadata record that
 declares an unsupported version is rejected with a structured diagnostic before
@@ -53,7 +53,7 @@ label and artifact version directly.
 
 ## Lockstep Product Train
 
-Skenion 0.33 is a lockstep product train. A completed 0.33 release aligns the
+skenion 0.33 is a lockstep product train. A completed 0.33 release aligns the
 releasable artifacts to the same product version, using registry-compatible
 SemVer such as `0.33.0` where a three-part version is required.
 
@@ -61,11 +61,11 @@ The release train metadata must align these surfaces before the train is
 complete:
 
 - `@skenion/contracts` and the `skenion-contracts` Rust crate.
-- The `skenion-runtime` crate and Runtime OS/arch binary assets.
 - `@skenion/sdk`.
-- Studio web and desktop application packages.
-- Runtime sidecar assets and checksums.
-- Skenion examples fixtures, tag, or commit.
+- Runtime OS/arch GitHub Release binary assets, sidecars, checksums, and
+  smoke-test evidence.
+- Studio web deployment artifacts and desktop GitHub Release packages.
+- skenion examples fixtures, tag, or commit.
 - Manual metadata and this `/manual/0.33/` Manual track.
 
 Patch releases stay on this major/minor Manual path, but the release train

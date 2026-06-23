@@ -44,7 +44,7 @@ GitHub Pages deployment for the train Manual path has succeeded.
 
 ## Strict v0 Version Policy
 
-Skenion v0 treats version fields as exact current-version discriminators, not
+skenion v0 treats version fields as exact current-version discriminators, not
 as compatibility ranges. A graph, project, node, operation, extension package,
 Runtime HTTP request, manifest, protocol payload, or Manual metadata record that
 declares an unsupported version is rejected with a structured diagnostic before
@@ -59,7 +59,7 @@ contract label and artifact version directly.
 
 ## Lockstep Product Trains
 
-Skenion v0 releases move as one product train. A completed train has one product
+skenion v0 releases move as one product train. A completed train has one product
 version shared by the releasable artifacts in that train, using
 registry-compatible SemVer such as `0.55.0` where a three-part version is
 required.
@@ -68,11 +68,11 @@ Before a v0 train is complete, the release train metadata must align these
 surfaces to the same product version:
 
 - `@skenion/contracts` and the `skenion-contracts` Rust crate.
-- The `skenion-runtime` crate and Runtime OS/arch binary assets.
 - `@skenion/sdk`.
-- Studio web and desktop application packages.
-- Runtime sidecar assets and checksums.
-- Skenion examples fixtures, tag, or commit.
+- Runtime OS/arch GitHub Release binary assets, sidecars, checksums, and
+  smoke-test evidence.
+- Studio web deployment artifacts and desktop GitHub Release packages.
+- skenion examples fixtures, tag, or commit.
 - Manual metadata and the deployed major/minor Manual path.
 
 The Manual path remains major/minor, but the release train manifest records the

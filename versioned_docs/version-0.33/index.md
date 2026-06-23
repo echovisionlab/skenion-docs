@@ -4,9 +4,9 @@ slug: /
 sidebar_position: 1
 ---
 
-# Skenion Manual 0.33
+# skenion Manual 0.33
 
-The 0.33 Manual track covers the Skenion graph contract and authoring behavior
+The 0.33 Manual track covers the skenion graph contract and authoring behavior
 for the 0.33 product minor.
 
 The 0.33 Manual uses graph 0.1 as the active project and graph model. Start

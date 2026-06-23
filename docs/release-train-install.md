@@ -5,10 +5,10 @@ sidebar_position: 3
 
 # Release Train And Install Artifacts
 
-The first Skenion release train rehearsal is `0.43.0`. The matching Manual
+The first skenion release train rehearsal is `0.43.0`. The matching Manual
 track is `0.43` and is published at `/manual/0.43/`.
 
-Skenion uses one lockstep product version across the release train. A user
+skenion uses one lockstep product version across the release train. A user
 install is considered complete only when the Contracts artifacts, Runtime
 artifacts, SDK package, Studio packages, examples fixture, checksums, and Manual
 track all point at the same product version.
@@ -22,11 +22,10 @@ For the `0.43.0` train, every released artifact is expected to use version
 | --- | --- |
 | Contracts npm package | `@skenion/contracts@0.43.0` |
 | Contracts Rust crate | `skenion-contracts 0.43.0` |
-| Runtime Rust crate | `skenion-runtime 0.43.0` |
-| Runtime standalone binaries | `0.43.0` release assets with checksums |
+| Runtime standalone binaries | `0.43.0` GitHub Release assets with checksums |
 | SDK npm package | `@skenion/sdk@0.43.0` |
-| Studio web and desktop packages | `0.43.0` |
-| Studio Runtime sidecars | `skenion-runtime 0.43.0` binaries |
+| Studio web and desktop artifacts | `0.43.0` GitHub Release or deployment assets |
+| Studio Runtime sidecars | Matching Runtime `0.43.0` binaries |
 | Examples fixture | `0.43.0` tag or recorded commit |
 | Manual track | `/manual/0.43/` |
 
@@ -36,7 +35,8 @@ publish from unreleased sibling branches.
 
 ## Runtime Standalone Binaries
 
-Runtime is both a Rust crate and an installable product binary. The Runtime
+Runtime is an installable product binary distributed through GitHub Release
+assets. It is not published as a crate registry release surface. The Runtime
 release publishes OS and architecture-specific standalone assets for users who
 want to run `skenion-runtime` directly or connect Studio to a shared local or
 remote Runtime.
@@ -62,7 +62,7 @@ do not block the `0.43.0` rehearsal from completing.
 
 ## Studio Desktop Packages
 
-Skenion Studio desktop uses a Tauri shell around the Studio web client. Desktop
+skenion Studio desktop uses a Tauri shell around the Studio web client. Desktop
 packages for `0.43.0` must bundle or reference Runtime sidecar assets from the
 same `0.43.0` train.
 
@@ -89,12 +89,11 @@ A `0.43.0` train is complete only after release verification confirms:
 
 - `@skenion/contracts@0.43.0` exists on npm.
 - `skenion-contracts 0.43.0` exists on crates.io.
-- `skenion-runtime 0.43.0` exists on crates.io.
-- Runtime standalone release assets and checksums exist for the release-blocking
-  OS/architecture tier.
 - `@skenion/sdk@0.43.0` exists on npm.
-- Studio web and desktop `0.43.0` packages exist with matching Runtime sidecar
-  assets.
+- Runtime standalone GitHub Release assets, checksums, and smoke-test evidence
+  exist for the release-blocking OS/architecture tier.
+- Studio web deployment artifacts and desktop GitHub Release packages exist for
+  `0.43.0` with matching Runtime sidecar assets.
 - The examples fixture tag or recorded commit is part of the train manifest.
 - GitHub Pages has deployed the `0.43` Manual track at `/manual/0.43/`.
 

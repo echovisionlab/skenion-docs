@@ -4,7 +4,7 @@ status: draft
 
 # Domain Crossing
 
-Domain crossing changes delivery semantics. Skenion requires explicit nodes for
+Domain crossing changes delivery semantics. skenion requires explicit nodes for
 these crossings.
 
 ## Examples

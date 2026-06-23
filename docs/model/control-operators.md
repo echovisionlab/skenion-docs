@@ -10,7 +10,7 @@ triggering output.
 
 ## First Baseline
 
-The first Skenion control operator baseline is:
+The first skenion control operator baseline is:
 
 - `+`
 - `-`
@@ -48,7 +48,7 @@ control graph.
 - invalid `pow` domains return `0`.
 - `sqrt` returns `0` for nonpositive input.
 
-Skenion may later provide strict math operators as extensions, but the Pd-style
+skenion may later provide strict math operators as extensions, but the Pd-style
 baseline uses deterministic Pd-compatible behavior.
 
 ## Unary Operators

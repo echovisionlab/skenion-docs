@@ -24,8 +24,7 @@ const manualSidebar = [
       "model/graph-01-current",
       "model/subpatches",
       "model/live-help",
-      "model/graph-fragments",
-      "model/pd-baseline-matrix"
+      "model/graph-fragments"
     ]
   },
   {
@@ -36,11 +35,6 @@ const manualSidebar = [
       "model/desktop-runtime-sessions",
       "model/realtime-collaboration"
     ]
-  },
-  {
-    type: "category",
-    label: "References",
-    items: ["references/pure-data-notes"]
   }
 ];
 

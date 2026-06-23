@@ -5,13 +5,13 @@ sidebar_position: 15
 
 # Graph 0.1 Current Contract
 
-Graph 0.1 is the single current graph and project contract for Skenion
+Graph 0.1 is the single current graph and project contract for skenion
 authoring. Studio, Runtime, SDK, examples, packages, and Manual behavior use
 `ProjectDocumentV01`, `GraphDocumentV01`, patch libraries,
 `PatchDefinitionV01`, `GraphFragmentV01`, and 0.1 Runtime graph targets.
 
 Unsupported graph, project, patch, fragment, package, Runtime HTTP, manifest,
-or protocol versions are rejected with structured diagnostics. Skenion v0 does
+or protocol versions are rejected with structured diagnostics. skenion v0 does
 not provide deprecated aliases or alternate active graph contract surfaces.
 
 ## Active Project Documents
