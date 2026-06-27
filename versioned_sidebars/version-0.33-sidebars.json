@@ -1,26 +1,6 @@
 {
   "manualSidebar": [
     "index",
-    "manual-versions",
-    {
-      "type": "category",
-      "label": "Graph 0.1 Foundation",
-      "collapsed": false,
-      "items": [
-        "model/graph-01-current",
-        "model/subpatches",
-        "model/live-help",
-        "model/graph-fragments"
-      ]
-    },
-    {
-      "type": "category",
-      "label": "Runtime Sessions",
-      "collapsed": false,
-      "items": [
-        "model/desktop-runtime-sessions",
-        "model/realtime-collaboration"
-      ]
-    }
+    "manual-versions"
   ]
 }

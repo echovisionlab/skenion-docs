@@ -4,36 +4,17 @@ const manualSidebar = [
   "release-train-install",
   {
     type: "category",
-    label: "Graph Model",
+    label: "Core Model",
     collapsed: false,
     items: [
-      "model/data-delivery-model",
-      "model/control-and-message",
-      "model/semantic-values",
-      "model/audio-signal",
-      "model/clock-and-transport",
-      "model/audio-clock-domains",
-      "model/video-stream",
-      "model/render-and-gpu",
-      "model/domain-crossing",
-      "model/object-layer",
-      "model/object-text-parser",
-      "model/control-operators",
-      "model/audio-dsp-model",
-      "model/expression-layer",
-      "model/graph-01-current",
-      "model/subpatches",
-      "model/live-help",
-      "model/graph-fragments"
-    ]
-  },
-  {
-    type: "category",
-    label: "Runtime Sessions",
-    collapsed: false,
-    items: [
-      "model/desktop-runtime-sessions",
-      "model/realtime-collaboration"
+      "model/object-value-occurrence-model",
+      "model/data-types",
+      "model/value-occurrences",
+      "model/interface-endpoints",
+      "model/connections",
+      "model/objects",
+      "model/object-identity-and-shortcuts",
+      "model/messages"
     ]
   }
 ];

@@ -78,10 +78,8 @@ Release-blocking Studio desktop package targets for the `0.43.0` train are:
 Windows arm64 and Linux arm64 desktop packages are preview for this train when
 their matching Runtime sidecar assets are available.
 
-Studio can also connect to a standalone Runtime through the connection profiles
-described in [Desktop Runtime Sessions](model/desktop-runtime-sessions.md).
-Those profiles change process ownership and connection behavior, not graph
-compatibility.
+Studio can also connect to a standalone Runtime. Runtime connection ownership
+changes process lifecycle and connection behavior, not graph compatibility.
 
 ## Release Completion Gates
 
