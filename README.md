@@ -1,45 +1,36 @@
 # skenion Manual
 
-Human-readable product Manual and design documents for skenion.
+Human-readable product Manual for skenion.
 
-This repository explains how skenion data moves through the system before it
-becomes node UI, runtime code, or renderer behavior. It is intentionally
-separate from machine-readable contracts.
+This repository explains the product model that Runtime, Studio, SDK, and
+Contracts must share. It is intentionally separate from machine-readable
+contracts and from internal research notes.
 
 ## Source Of Truth
 
 | Surface | Owner |
 | --- | --- |
 | Human-readable model docs | `skenion-docs` |
-| JSON Schema, OpenAPI, builtins, generated TS/Rust packages | `skenion-contracts` |
+| JSON Schema, shared value/interface DTOs, generated TS/Rust packages | `skenion-contracts` |
 | Runtime behavior and native execution | `skenion-runtime` |
 | Studio UI and interaction implementation | `skenion-studio` |
 | Compatibility fixtures and tutorials | `skenion-examples` |
 
 Do not copy schema definitions from `skenion-contracts` into this repository.
-Docs here should explain intent, ownership, delivery semantics, and review
-criteria. Machine contracts remain in `skenion-contracts`.
+Docs here explain intent, ownership, model boundaries, and review criteria.
+Machine contracts remain in `skenion-contracts`.
 
 ## Start Here
 
 - [skenion Manual](docs/index.md)
 - [Manual Versions](docs/manual-versions.md)
-- [Data Delivery Model](docs/model/data-delivery-model.md)
-- [Control And Message](docs/model/control-and-message.md)
-- [Semantic Values](docs/model/semantic-values.md)
-- [Audio Signal](docs/model/audio-signal.md)
-- [Clock And Transport](docs/model/clock-and-transport.md)
-- [Audio Clock Domains](docs/model/audio-clock-domains.md)
-- [Video Stream](docs/model/video-stream.md)
-- [Render And GPU](docs/model/render-and-gpu.md)
-- [Domain Crossing](docs/model/domain-crossing.md)
-- [Object Layer](docs/model/object-layer.md)
-- [Object Text Parser](docs/model/object-text-parser.md)
-- [Control Operators](docs/model/control-operators.md)
-- [Audio DSP Model](docs/model/audio-dsp-model.md)
-- [Expression Layer](docs/model/expression-layer.md)
-- [Subpatches](docs/model/subpatches.md)
-- [Live Help](docs/model/live-help.md)
+- [Object Value Occurrence Model](docs/model/object-value-occurrence-model.md)
+- [Data Types](docs/model/data-types.md)
+- [Value Occurrences](docs/model/value-occurrences.md)
+- [Interface Endpoints](docs/model/interface-endpoints.md)
+- [Connections](docs/model/connections.md)
+- [Objects](docs/model/objects.md)
+- [Messages](docs/model/messages.md)
 
 ## Manual Site
 
