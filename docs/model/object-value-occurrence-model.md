@@ -35,6 +35,7 @@ Read these pages as the current source of truth for the basic model:
 - [Interface Endpoints](interface-endpoints.md)
 - [Connections](connections.md)
 - [Objects](objects.md)
+- [Object Identity And Shortcuts](object-identity-and-shortcuts.md)
 - [Messages](messages.md)
 
 These pages replace the older public model pages that mixed graph delivery,

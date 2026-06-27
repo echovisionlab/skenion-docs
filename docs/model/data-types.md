@@ -248,3 +248,24 @@ object definition declares that coercion. Another input may accept
 trigger without updating stored numeric state.
 
 The value type does not encode that policy. The endpoint does.
+
+## Object Boundary
+
+Value type ids and object ids are different namespaces.
+
+Examples:
+
+| Value type | Related object, when one exists |
+| --- | --- |
+| `value.core.float64` | `object.core.float` |
+| `value.core.bang` | `object.core.bang` |
+| `value.core.message` | `object.core.message` |
+
+This relationship is not automatic. `value.core.bool` and `value.core.string`
+are valid value types, but there is no default `object.core.bool` or
+`object.core.string` just because those values exist. An object may display,
+store, emit, or transform those values, but the object identity must be defined
+by the Runtime or provider registry.
+
+See [Object Identity And Shortcuts](object-identity-and-shortcuts.md) for the
+canonical object id and shortcut rules.

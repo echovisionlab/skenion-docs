@@ -20,6 +20,11 @@ patches, installed packages, and development packages. Studio may offer object
 search, palette UI, and unresolved-object repair, but the live object
 definition is Runtime-owned.
 
+Object identity follows the canonical rules in
+[Object Identity And Shortcuts](object-identity-and-shortcuts.md). In short,
+first-party executable objects use `object.core.*`, value types use
+`value.core.*`, and user-facing shortcuts are resolver input only.
+
 When Studio asks to create or connect an object, Runtime must be able to answer:
 
 - whether the object can be resolved
@@ -39,6 +44,11 @@ choose one silently. It should keep the object unresolved or ambiguous and ask
 the user to choose. Persisted graph state should be based on the selected
 provider identity and the object interface that Runtime accepted, not on a
 guess made from display text.
+
+Package and project objects must not encode publisher, package, version, URL, or
+filesystem identity into a single dotted object id. Persist provider identity as
+structured metadata, such as provider kind, lock entry, package id, capability
+kind, and provided id.
 
 ## Object Inventory
 

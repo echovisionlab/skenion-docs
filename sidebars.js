@@ -13,6 +13,7 @@ const manualSidebar = [
       "model/interface-endpoints",
       "model/connections",
       "model/objects",
+      "model/object-identity-and-shortcuts",
       "model/messages"
     ]
   }
